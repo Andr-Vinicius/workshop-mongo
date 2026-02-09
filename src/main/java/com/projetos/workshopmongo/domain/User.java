@@ -3,11 +3,16 @@ package com.projetos.workshopmongo.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document // Mapea a coleção com o mesmo nome da Classe
 public class User implements Serializable{
 	// Serializable - Objetos serem convertidos em Bytes e trafegarem na rede
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private String id;
 	private String name;
 	private String email;
