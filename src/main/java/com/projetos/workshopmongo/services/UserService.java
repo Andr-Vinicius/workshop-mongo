@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.projetos.workshopmongo.domain.User;
@@ -37,8 +38,23 @@ public class UserService {
 		repo.deleteById(id);
 	}
 	
+	public User update(User obj) {
+		User newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		
+		return repo.save(newObj);
+		
+	}
+	
 	public User fromDTO(UserDTO obj) {
 		return new User(obj.getId(), obj.getName(), obj.getEmail());
+	}
+	
+	public User updateData(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+		
+		return newObj;
 	}
 	
 
